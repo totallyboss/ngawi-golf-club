@@ -7,7 +7,16 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-const path = resolve('dist/client/wrangler.json');
+// Path varies by Astro output mode: server mode → dist/server, static → dist/client
+const candidates = ['dist/server/wrangler.json', 'dist/client/wrangler.json'];
+const path = candidates.map(p => resolve(p)).find(p => {
+  try { readFileSync(p); return true; } catch { return false; }
+});
+
+if (!path) {
+  console.error('Failed to strip SESSION binding: wrangler.json not found in dist/');
+  process.exit(1);
+}
 
 try {
   const config = JSON.parse(readFileSync(path, 'utf-8'));
@@ -27,7 +36,7 @@ try {
   }
 
   writeFileSync(path, JSON.stringify(config, null, 2));
-  console.log('✓ Stripped SESSION KV binding from dist/client/wrangler.json');
+  console.log(`✓ Stripped SESSION KV binding from ${path}`);
 } catch (err) {
   console.error('Failed to strip SESSION binding:', err.message);
   process.exit(1);
