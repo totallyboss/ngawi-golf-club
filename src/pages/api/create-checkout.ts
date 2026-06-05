@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
 
+export const prerender = false;
+
 const PRODUCTS = {
   'green-fee': {
     name: 'Ngawi Golf Club – Green Fee',

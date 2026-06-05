@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
 
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request }) => {
   const resendKey = (import.meta.env.RESEND_API_KEY as string) ||
     ((request as unknown as { env?: { RESEND_API_KEY?: string } }).env?.RESEND_API_KEY);
