@@ -1,0 +1,69 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/course', label: 'Course' },
+  { href: '/fees', label: 'Fees' },
+  { href: '/events', label: 'Events' },
+  { href: '/sponsorship', label: 'Sponsorship' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-green-900 text-white shadow-md">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold tracking-tight hover:text-green-200 transition-colors">
+      Ngawi Golf Club
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex gap-6 text-sm font-medium">
+      {links.map(({ href, label }) => (
+        <a
+          href={href}
+          class={`hover:text-green-200 transition-colors ${currentPath === href ? 'text-green-300 font-semibold' : ''}`}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="hidden md:hidden flex-col bg-green-800 px-4 pb-4">
+    {links.map(({ href, label }) => (
+      <a
+        href={href}
+        class={`block py-2 text-sm font-medium hover:text-green-200 transition-colors border-b border-green-700 last:border-0 ${currentPath === href ? 'text-green-300' : ''}`}
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  btn.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden', isOpen);
+    menu.classList.toggle('flex', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

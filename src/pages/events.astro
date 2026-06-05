@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const events = [
+  {
+    title: 'Opening Day Stableford',
+    date: '2026-07-05',
+    displayDate: 'Saturday 5 July 2026',
+    description: 'Kick off the season with our popular stableford competition. All members and visitors welcome.',
+  },
+  {
+    title: 'Club Championship — Round 1',
+    date: '2026-08-02',
+    displayDate: 'Sunday 2 August 2026',
+    description: 'First round of the annual Ngawi Golf Club Championship. Members only.',
+  },
+  {
+    title: 'Club Championship — Round 2',
+    date: '2026-08-09',
+    displayDate: 'Sunday 9 August 2026',
+    description: 'Final round and presentation. Light refreshments provided at the clubhouse.',
+  },
+  {
+    title: 'Visitors Day',
+    date: '2026-09-13',
+    displayDate: 'Sunday 13 September 2026',
+    description: 'Open day for visitors and potential new members. Green fees waived. Come and see what we\'re about.',
+  },
+  {
+    title: 'End of Season Social Round',
+    date: '2026-10-25',
+    displayDate: 'Sunday 25 October 2026',
+    description: 'Casual social round to close out the season. BBQ and prizegiving to follow.',
+  },
+];
+---
+
+<Layout title="Events" description="Upcoming events at Ngawi Golf Club.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-green-900 mb-4">Upcoming Events</h1>
+    <p class="text-gray-600 text-lg mb-10">
+      Club competitions, open days, and social rounds. Check back regularly for updates.
+    </p>
+
+    <div class="space-y-6">
+      {events.map(event => (
+        <div class="border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col sm:flex-row gap-4">
+          <div class="sm:w-36 shrink-0">
+            <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
+              {event.displayDate}
+            </span>
+          </div>
+          <div>
+            <h2 class="text-base font-semibold text-gray-900 mb-1">{event.title}</h2>
+            <p class="text-sm text-gray-600">{event.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-10 text-sm text-gray-500">
+      Want to be notified about events? <a href="/contact" class="text-green-700 hover:underline">Contact us</a> to get on the mailing list.
+    </p>
+  </div>
+</Layout>

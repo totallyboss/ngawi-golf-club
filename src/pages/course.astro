@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="The Course" description="Course information for Ngawi Golf Club — a links course on the Wairarapa Coast.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-green-900 mb-4">The Course</h1>
+    <p class="text-gray-600 text-lg mb-10">
+      Ngawi Golf Club offers a unique links experience on the remote southern tip of the Wairarapa Coast.
+      With wild winds off Cook Strait and panoramic sea views, every round is memorable.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-green-50 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-green-900 mb-4">Course Details</h2>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between border-b border-green-100 pb-2">
+            <dt class="text-gray-600">Holes</dt>
+            <dd class="font-medium">9</dd>
+          </div>
+          <div class="flex justify-between border-b border-green-100 pb-2">
+            <dt class="text-gray-600">Par</dt>
+            <dd class="font-medium">36</dd>
+          </div>
+          <div class="flex justify-between border-b border-green-100 pb-2">
+            <dt class="text-gray-600">Type</dt>
+            <dd class="font-medium">Links</dd>
+          </div>
+          <div class="flex justify-between border-b border-green-100 pb-2">
+            <dt class="text-gray-600">Location</dt>
+            <dd class="font-medium">Ngawi, Wairarapa</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-gray-600">Green Fees</dt>
+            <dd class="font-medium">$10 NZD</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="bg-green-50 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-green-900 mb-4">Facilities</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Clubhouse with basic amenities</li>
+          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Practice putting green</li>
+          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Equipment available on request</li>
+          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Visitors welcome</li>
+          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Pay-and-play, no booking required</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-green-900 mb-3">Getting Here</h2>
+      <p class="text-gray-600 text-sm">
+        Ngawi is located at the southern tip of the Wairarapa, approximately 2.5 hours from Wellington via Martinborough and Palliser Bay.
+        Follow State Highway 53 through Lake Ferry — Ngawi is at the end of the road, right on the coast.
+      </p>
+    </div>
+  </div>
+</Layout>

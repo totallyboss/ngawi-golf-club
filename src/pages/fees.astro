@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Fees" description="Green fees and membership pricing for Ngawi Golf Club.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-green-900 mb-4">Fees</h1>
+    <p class="text-gray-600 text-lg mb-10">
+      Pay your green fee or annual membership online with a card. Payments are processed securely through Stripe.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Green fee card -->
+      <div class="border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
+        <h2 class="text-xl font-semibold text-green-900 mb-1">Green Fee</h2>
+        <p class="text-3xl font-bold text-green-700 mb-1">$10 <span class="text-base font-normal text-gray-500">NZD</span></p>
+        <p class="text-sm text-gray-500 mb-4">Per round, visitors only. Members play free.</p>
+        <ul class="text-sm text-gray-600 space-y-1 mb-6 flex-1">
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> One round, pay-and-play</li>
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> No booking required</li>
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Receipt emailed by Stripe</li>
+        </ul>
+
+        <!-- Member toggle -->
+        <div class="mb-4" id="member-section">
+          <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none">
+            <input type="checkbox" id="is-member" class="w-4 h-4 accent-green-700" />
+            I am an annual member — no green fee applies
+          </label>
+        </div>
+
+        <div id="green-fee-btn">
+          <button
+            id="pay-green-fee"
+            class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 px-4 rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Pay Green Fee — $10 NZD
+          </button>
+        </div>
+        <p id="member-msg" class="hidden text-sm text-green-700 font-medium text-center py-3">
+          ✓ Members play free — enjoy your round!
+        </p>
+      </div>
+
+      <!-- Membership card -->
+      <div class="border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
+        <h2 class="text-xl font-semibold text-green-900 mb-1">Annual Membership</h2>
+        <p class="text-3xl font-bold text-green-700 mb-1">$120 <span class="text-base font-normal text-gray-500">NZD / year</span></p>
+        <p class="text-sm text-gray-500 mb-4">One-off payment. No automatic renewal.</p>
+        <ul class="text-sm text-gray-600 space-y-1 mb-6 flex-1">
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Unlimited rounds for 12 months</li>
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> No green fees when you play</li>
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Access to club competitions</li>
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Receipt emailed by Stripe</li>
+        </ul>
+
+        <button
+          id="pay-membership"
+          class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 px-4 rounded-md transition-colors"
+        >
+          Pay Annual Membership — $120 NZD
+        </button>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-400 mt-6 text-center">
+      Payments processed securely by Stripe. Ngawi Golf Club does not store card details.
+      Stripe charges a small transaction fee (~2.9% + 30¢) which is absorbed in the listed price.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  const isMemberCheckbox = document.getElementById('is-member') as HTMLInputElement;
+  const greenFeeBtn = document.getElementById('pay-green-fee') as HTMLButtonElement;
+  const memberMsg = document.getElementById('member-msg')!;
+
+  isMemberCheckbox.addEventListener('change', () => {
+    if (isMemberCheckbox.checked) {
+      greenFeeBtn.classList.add('hidden');
+      memberMsg.classList.remove('hidden');
+    } else {
+      greenFeeBtn.classList.remove('hidden');
+      memberMsg.classList.add('hidden');
+    }
+  });
+
+  async function redirectToCheckout(product: 'green-fee' | 'membership') {
+    const btn = product === 'green-fee' ? greenFeeBtn : document.getElementById('pay-membership') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Redirecting to payment…';
+
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product }),
+      });
+
+      if (!res.ok) throw new Error('Failed to create checkout session');
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch {
+      btn.disabled = false;
+      btn.textContent = product === 'green-fee' ? 'Pay Green Fee — $10 NZD' : 'Pay Annual Membership — $120 NZD';
+      alert('Something went wrong. Please try again.');
+    }
+  }
+
+  greenFeeBtn.addEventListener('click', () => redirectToCheckout('green-fee'));
+  document.getElementById('pay-membership')!.addEventListener('click', () => redirectToCheckout('membership'));
+</script>
