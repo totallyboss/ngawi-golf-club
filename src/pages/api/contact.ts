@@ -1,20 +1,14 @@
-interface Env {
-  RESEND_API_KEY: string;
-  CONTACT_EMAIL: string;
-}
+import type { APIRoute } from 'astro';
 
-interface FormBody {
-  name?: string;
-  email?: string;
-  message?: string;
-  subject?: string;
-  business?: string;
-}
+export const POST: APIRoute = async ({ request }) => {
+  const resendKey = (import.meta.env.RESEND_API_KEY as string) ||
+    ((request as unknown as { env?: { RESEND_API_KEY?: string } }).env?.RESEND_API_KEY);
+  const contactEmail = (import.meta.env.CONTACT_EMAIL as string) ||
+    ((request as unknown as { env?: { CONTACT_EMAIL?: string } }).env?.CONTACT_EMAIL);
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
-  let body: FormBody;
+  let body: { name?: string; email?: string; message?: string; subject?: string; business?: string };
   try {
-    body = await request.json() as FormBody;
+    body = await request.json();
   } catch {
     return json({ error: 'Invalid request body' }, 400);
   }
@@ -39,12 +33,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${resendKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       from: 'Ngawi Golf Club Website <noreply@ngawigolfclub.co.nz>',
-      to: [env.CONTACT_EMAIL],
+      to: [contactEmail],
       reply_to: email,
       subject: emailSubject,
       text: textBody,

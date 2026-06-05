@@ -1,23 +1,27 @@
+import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
-
-interface Env {
-  STRIPE_SECRET_KEY: string;
-}
 
 const PRODUCTS = {
   'green-fee': {
     name: 'Ngawi Golf Club – Green Fee',
-    amount: 1000, // $10.00 NZD in cents
+    amount: 1000,
   },
   'membership': {
     name: 'Ngawi Golf Club – Annual Membership',
-    amount: 12000, // $120.00 NZD in cents
+    amount: 12000,
   },
 } as const;
 
 type ProductKey = keyof typeof PRODUCTS;
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export const POST: APIRoute = async ({ request }) => {
+  const stripeKey = (import.meta.env.STRIPE_SECRET_KEY as string) ||
+    ((request as unknown as { env?: { STRIPE_SECRET_KEY?: string } }).env?.STRIPE_SECRET_KEY);
+
+  if (!stripeKey) {
+    return new Response(JSON.stringify({ error: 'Stripe not configured' }), { status: 500 });
+  }
+
   const origin = new URL(request.url).origin;
 
   let product: ProductKey;
@@ -31,7 +35,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return new Response(JSON.stringify({ error: 'Invalid request body' }), { status: 400 });
   }
 
-  const stripe = new Stripe(env.STRIPE_SECRET_KEY);
+  const stripe = new Stripe(stripeKey);
   const { name, amount } = PRODUCTS[product];
 
   const session = await stripe.checkout.sessions.create({
