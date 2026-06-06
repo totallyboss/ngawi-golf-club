@@ -40,9 +40,22 @@ Members identify themselves by selecting "I am a member" — no code or login re
 
 shadcn/ui (Radix primitives + Tailwind CSS) gives accessible, unstyled components that are easy to theme. It avoids shipping a large JS bundle. Components are copied into the repo rather than installed as a dependency, giving full control.
 
+## Costs
+
+| Item | Cost |
+|---|---|
+| Cloudflare Workers (hosting) | $0/mo — free tier covers ~3M requests/month, well above club-site usage |
+| Cloudflare Workers Paid (if needed) | $5/mo — only required above 100k requests/day |
+| Resend (contact forms) | $0/mo — free tier (3,000 emails/month) |
+| Domain renewal (GoDaddy .co.nz) | ~$2.50 NZD/mo amortised |
+| Stripe — green fee ($10) | ~47¢ NZD per transaction (1.7% + 30¢ NZD domestic rate) |
+| Stripe — membership ($120) | ~$2.34 NZD per transaction |
+
+**Effective ongoing cost: ~$2.50 NZD/mo + Stripe fees per transaction.**
+
 ## Risks / Trade-offs
 
-- **Stripe fees (~2.9% + 30¢)** → Communicate to club treasurer; factor into fee pricing
+- **Stripe fees (1.7% + 30¢ NZD)** → Club receives $9.53 per green fee, $117.66 per membership; communicate to treasurer
 - **No payment verification for members** → Accepted; honor system appropriate for club scale
 - **Static content updates require code changes** → Accepted; developer maintains the site
 - **GoDaddy → Cloudflare DNS propagation delay on launch** → Allow 24-48hrs; test with temporary Cloudflare URL first
@@ -59,5 +72,4 @@ shadcn/ui (Radix primitives + Tailwind CSS) gives accessible, unstyled component
 
 ## Open Questions
 
-- Is there a success/cancel URL preference after Stripe checkout? (e.g. back to /fees) ✓ resolved above
-- Currency confirmation: assuming NZD — please confirm
+_None outstanding._
