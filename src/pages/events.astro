@@ -36,31 +36,67 @@ const events = [
 ---
 
 <Layout title="Events" description="Upcoming events at Ngawi Golf Club.">
-  <div class="max-w-4xl mx-auto px-4 py-12">
+  <div class="max-w-4xl mx-auto px-4 pt-12 pb-16">
     <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">Upcoming Events</h1>
     <p class="text-gray-600 text-lg mb-10">
       Club competitions, open days, and social rounds. Check back regularly for updates.
     </p>
 
-    <div class="space-y-6">
-      {events.map(event => (
-        <div class="border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col sm:flex-row gap-4">
-          <div class="sm:w-36 shrink-0">
-            <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
-              {event.displayDate}
-            </span>
+    {events.length > 0 ? (
+      <div class="space-y-6 mb-10">
+        {events.map(event => (
+          <div class="border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col sm:flex-row gap-4">
+            <div class="sm:w-36 shrink-0">
+              <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
+                {event.displayDate}
+              </span>
+            </div>
+            <div>
+              <h2 class="text-base font-semibold text-gray-900 mb-1">{event.title}</h2>
+              <p class="text-sm text-gray-600">{event.description}</p>
+            </div>
           </div>
-          <div>
-            <h2 class="text-base font-semibold text-gray-900 mb-1">{event.title}</h2>
-            <p class="text-sm text-gray-600">{event.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    ) : (
+      <div class="bg-green-50 rounded-lg p-8 text-center mb-10">
+        <p class="text-gray-600 text-lg">
+          Nothing on the calendar right now. Check back soon, or{' '}
+          <a href="/contact" class="text-green-700 font-medium hover:underline">get in touch</a>
+          {' '}to be the first to know about upcoming events.
+        </p>
+      </div>
+    )}
 
-    <p class="mt-10 text-sm text-gray-500">
+    <p class="text-sm text-gray-500 mb-16">
       Want to be notified about events? <a href="/contact" class="text-green-700 hover:underline">Contact us</a> to get on the mailing list.
     </p>
+
+    <!-- Evergreen event types -->
+    <h2 class="font-heading text-2xl md:text-3xl font-bold text-green-900 mb-6">What We Run</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div class="text-4xl mb-3">🏆</div>
+        <h3 class="text-lg font-semibold mb-2">Competitions</h3>
+        <p class="text-gray-600 text-sm">
+          Structured scoring events throughout the season — stableford, stroke play, and the annual Club Championship. Some open to all, some members only.
+        </p>
+      </div>
+      <div class="text-center p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div class="text-4xl mb-3">⛳</div>
+        <h3 class="text-lg font-semibold mb-2">Social Rounds</h3>
+        <p class="text-gray-600 text-sm">
+          Casual golf with no scoring pressure. A chance to enjoy the course, meet fellow members, and share a post-round drink. All welcome.
+        </p>
+      </div>
+      <div class="text-center p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div class="text-4xl mb-3">👋</div>
+        <h3 class="text-lg font-semibold mb-2">Visitors Days</h3>
+        <p class="text-gray-600 text-sm">
+          Open days for non-members curious about the club. Green fees waived. Come and see what Ngawi Golf Club is all about — no obligation.
+        </p>
+      </div>
+    </div>
   </div>
 
   <!-- Visual strip -->

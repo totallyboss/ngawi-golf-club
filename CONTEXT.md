@@ -36,6 +36,26 @@ A full-viewport-width decorative image band placed directly above the footer on 
 
 A minimalist inline SVG golf flag (~20×20px) placed to the left of the "Ngawi Golf Club" wordmark in the navigation. White fill on the dark green header. Decorative only (`aria-hidden`).
 
+## Event Type
+
+The three recurring categories of club activity: **Competition** (structured scoring events, members only or open), **Social Round** (casual, no scoring pressure, all welcome), **Visitors Day** (open day for non-members, green fees waived). These are permanent features of the club calendar used as evergreen content on the Events page regardless of whether specific events are scheduled.
+
+## Event
+
+A specific scheduled instance of an event (competition, social round, open day, etc.) that appears on the Events page. Events have a title, date, display date, and description. An event is only shown on the site if it has been explicitly **Published** (see below).
+
+## Published (Event)
+
+A boolean field on each Event row in the Google Sheet. An event is only included in the site build if `Published = TRUE`. This prevents draft or in-progress rows from appearing live while someone is still typing them out.
+
+## Event Sheet
+
+A Google Sheet maintained by club administrators containing the list of Events. Columns: Title, Date, Display Date, Description, Published. The sheet is fetched at build time via a published CSV URL. Only rows where `Published = TRUE` are rendered.
+
+## Deploy Hook
+
+A Cloudflare Pages webhook URL that triggers a fresh site build when called. Club administrators trigger a deploy manually (e.g. via a button or script) after ticking `Published` on one or more Event rows in the Event Sheet.
+
 ## Carousel Gallery
 
 A horizontal scroll-snap image gallery used on the Course page in the History & Community section. 10 images, `h-48` height, scroll-wheel on desktop, swipe on mobile. No arrow buttons. Implemented with CSS scroll-snap (no JS library).
