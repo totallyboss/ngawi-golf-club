@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="The Course" description="Course information for Ngawi Golf Club — a links course on the Wairarapa Coast.">
   <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="text-3xl md:text-4xl font-bold text-green-900 mb-4">The Course</h1>
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">The Course</h1>
     <p class="text-gray-600 text-lg mb-10">
       Ngawi Golf Club offers a unique links experience on the remote southern tip of the Wairarapa Coast.
       With wild winds off Cook Strait and panoramic sea views, every round is memorable.
@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="grid md:grid-cols-2 gap-8 mb-12">
       <div class="bg-green-50 rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-green-900 mb-4">Course Details</h2>
+        <h2 class="font-heading text-xl font-semibold text-green-900 mb-4">Course Details</h2>
         <dl class="space-y-3 text-sm">
           <div class="flex justify-between border-b border-green-100 pb-2">
             <dt class="text-gray-600">Holes</dt>
@@ -38,21 +38,69 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="bg-green-50 rounded-lg p-6">
-        <h2 class="text-xl font-semibold text-green-900 mb-4">Course rules</h2>
+        <h2 class="font-heading text-xl font-semibold text-green-900 mb-4">Course Rules</h2>
         <ul class="space-y-2 text-sm text-gray-700">
           <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Have fun</li>
-          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Be respectuful</li>
+          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Be respectful</li>
           <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> If the ball goes over the road....</li>
         </ul>
       </div>
     </div>
 
     <div class="bg-gray-50 rounded-lg p-6">
-      <h2 class="text-xl font-semibold text-green-900 mb-3">Getting Here</h2>
-      <p class="text-gray-600 text-sm">
+      <h2 class="font-heading text-xl font-semibold text-green-900 mb-3">Getting Here</h2>
+      <p class="text-gray-600 text-sm mb-4">
         Ngawi is located at the southern tip of the Wairarapa, approximately 2.5 hours from Wellington via Martinborough and Palliser Bay.
         Follow State Highway 53 through Lake Ferry — Ngawi is at the end of the road, right on the coast.
       </p>
+      <a
+        href="https://www.google.com/maps/search/Ngawi+Golf+Club+Wairarapa"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-green-700 font-medium text-sm hover:underline"
+      >
+        View on Google Maps →
+      </a>
     </div>
   </div>
+
+  <!-- Gallery — full browser width, above History section -->
+  <div class="py-10">
+    <div class="max-w-4xl mx-auto px-4 mb-4">
+      <h2 class="font-heading text-2xl font-bold text-green-900">Gallery</h2>
+    </div>
+    <div
+      class="flex gap-3 overflow-x-auto scroll-smooth px-4 pb-3"
+      style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;"
+    >
+      <img src="https://picsum.photos/seed/course1/576/384" alt="Golf course" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course2/576/384" alt="Golf fairway" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course3/576/384" alt="Golf green" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course4/576/384" alt="Coastal views" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course5/576/384" alt="Golf hole" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course6/576/384" alt="Morning light" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course7/576/384" alt="Links landscape" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course8/576/384" alt="Palliser Bay" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course9/576/384" alt="Club grounds" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      <img src="https://picsum.photos/seed/course10/576/384" alt="Wairarapa coast" class="h-96 w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+    </div>
+  </div>
+
+  <!-- History & Community -->
+  <div class="max-w-4xl mx-auto px-4 pb-12">
+    <h2 class="font-heading text-2xl md:text-3xl font-bold text-green-900 mb-4">History & Community</h2>
+    <!-- TODO: replace with real copy -->
+    <div class="text-gray-600 space-y-4">
+      <p>
+        Ngawi Golf Club has been part of this rugged coastal community for generations. Founded by locals who wanted a place to play, unwind, and connect, the club has always been about more than golf — it's a gathering point for the people of Ngawi and the wider Palliser Bay region.
+      </p>
+      <p>
+        Ngawi itself is one of New Zealand's most distinctive fishing villages, known for its fleet of bulldozers used to launch boats straight off the beach into the surf. Sitting at the foot of Cape Palliser, the southernmost point of the North Island, the area is wild, windswept, and unlike anywhere else in the country. The golf course reflects that character — unpretentious, memorable, and deeply tied to the land.
+      </p>
+      <p>
+        The club welcomes visitors from across New Zealand and beyond. Whether you're a local who's played every hole a hundred times, or a traveller making the journey down SH53 for the first time, you'll find a warm welcome and a round worth remembering.
+      </p>
+    </div>
+  </div>
+
 </Layout>

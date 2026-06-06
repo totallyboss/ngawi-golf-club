@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Fees" description="Green fees and membership pricing for Ngawi Golf Club.">
   <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="text-3xl md:text-4xl font-bold text-green-900 mb-4">Fees</h1>
+    <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">Fees</h1>
     <p class="text-gray-600 text-lg mb-10">
       Pay your green fee or annual membership online with a card. Payments are processed securely through Stripe.
     </p>
@@ -68,6 +68,15 @@ import Layout from '../layouts/Layout.astro';
       Stripe charges a small transaction fee (~2.9% + 30¢) which is absorbed in the listed price.
     </p>
   </div>
+  
+  <!-- Visual strip -->
+  <img
+    src="https://picsum.photos/1000/400"
+    alt=""
+    aria-hidden="true"
+    class="block w-full h-100 object-cover"
+  />
+
 </Layout>
 
 <script>

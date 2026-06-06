@@ -38,9 +38,19 @@ import Layout from '../layouts/Layout.astro';
       </button>
     </form>
   </div>
+
+  <!-- Visual strip -->
+  <img
+    src="https://picsum.photos/1000/400"
+    alt=""
+    aria-hidden="true"
+    class="block w-full h-100 object-cover"
+  />
 </Layout>
 
 <script>
   import { submitForm } from '../lib/formSubmit';
   submitForm('contact-form', 'c-error', 'c-success');
 </script>
+
+
