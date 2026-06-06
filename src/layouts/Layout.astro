@@ -20,6 +20,8 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
     <title>{title} | Ngawi Golf Club</title>
   </head>
   <body class="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
+    <!-- Page progress bar -->
+    <div id="page-progress" style="position:fixed;top:0;left:0;height:3px;width:0;z-index:9999;background:rgb(21 128 61);pointer-events:none;transition:opacity 0.3s ease;"></div>
     <Nav />
     <main class="flex-1">
       <slot />
@@ -33,3 +35,52 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
     </footer>
   </body>
 </html>
+
+<style>
+  @keyframes progress-run {
+    0%   { width: 0% }
+    15%  { width: 35% }
+    50%  { width: 65% }
+    80%  { width: 82% }
+    100% { width: 90% }
+  }
+  #page-progress.loading {
+    animation: progress-run 2.5s cubic-bezier(0.1, 0.05, 0.3, 1) forwards;
+  }
+</style>
+
+<script>
+  const bar = document.getElementById('page-progress')!;
+  const main = document.querySelector('main')!;
+
+  // Close mobile menu if open — dispatches a custom event Nav.astro listens for
+  function closeMobileMenuIfOpen() {
+    const menuBtn = document.getElementById('menu-btn');
+    if (menuBtn?.getAttribute('aria-expanded') === 'true') {
+      menuBtn.click();
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const link = (e.target as Element).closest('a[href]') as HTMLAnchorElement | null;
+    if (!link) return;
+
+    const href = link.getAttribute('href') ?? '';
+
+    // Skip: external links, hash anchors, mailto/tel
+    if (
+      !href ||
+      href.startsWith('http') ||
+      href.startsWith('//') ||
+      href.startsWith('#') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:')
+    ) return;
+
+    // Immediate feedback
+    closeMobileMenuIfOpen();
+    bar.classList.add('loading');
+    main.style.transition = 'opacity 0.15s ease';
+    main.style.opacity = '0.5';
+  });
+</script>
