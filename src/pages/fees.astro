@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
   <div class="max-w-4xl mx-auto px-4 py-12">
     <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">Fees</h1>
     <p class="text-gray-600 text-lg mb-10">
-      Pay your green fee or annual membership online with a card. Payments are processed securely through Stripe.
+      Golf at Ngawi is deliberately affordable. A $10 round is one of the best-value games in New Zealand — and for $120 a year you get unlimited golf <em>and</em> a NZ Golf accredited membership recognised at clubs across the country.
     </p>
 
     <div class="grid md:grid-cols-2 gap-8">
@@ -14,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
         <h2 class="text-xl font-semibold text-green-900 mb-1">Green Fee</h2>
         <p class="text-3xl font-bold text-green-700 mb-1">$10 <span class="text-base font-normal text-gray-500">NZD</span></p>
-        <p class="text-sm text-gray-500 mb-4">Per round, visitors only. Members play free.</p>
+        <p class="text-sm text-gray-500 mb-4">Per round. One of the cheapest games in New Zealand.</p>
         <ul class="text-sm text-gray-600 space-y-1 mb-6 flex-1">
           <li class="flex items-start gap-2"><span class="text-green-600">✓</span> One round, pay-and-play</li>
           <li class="flex items-start gap-2"><span class="text-green-600">✓</span> No booking required</li>
@@ -32,7 +32,7 @@ import Layout from '../layouts/Layout.astro';
         <div id="green-fee-btn">
           <button
             id="pay-green-fee"
-            class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 px-4 rounded-md transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            class="w-full bg-green-700 hover:bg-green-800 active:bg-green-900 active:scale-95 text-white font-semibold py-3 px-4 rounded-md transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Pay Green Fee — $10 NZD
           </button>
@@ -43,7 +43,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Membership card -->
-      <div class="border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
+      <div class="border-2 border-green-700 rounded-lg p-6 shadow-sm flex flex-col relative">
+        <span class="absolute -top-3 left-4 bg-green-700 text-white text-xs font-semibold px-2 py-0.5 rounded">Best value</span>
         <h2 class="text-xl font-semibold text-green-900 mb-1">Annual Membership</h2>
         <p class="text-3xl font-bold text-green-700 mb-1">$120 <span class="text-base font-normal text-gray-500">NZD / year</span></p>
         <p class="text-sm text-gray-500 mb-4">One-off payment. No automatic renewal.</p>
@@ -51,12 +52,13 @@ import Layout from '../layouts/Layout.astro';
           <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Unlimited rounds for 12 months</li>
           <li class="flex items-start gap-2"><span class="text-green-600">✓</span> No green fees when you play</li>
           <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Access to club competitions</li>
+          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> NZ Golf accredited — recognised at clubs across New Zealand</li>
           <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Receipt emailed by Stripe</li>
         </ul>
 
         <button
           id="pay-membership"
-          class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 px-4 rounded-md transition-colors"
+          class="w-full bg-green-700 hover:bg-green-800 active:bg-green-900 active:scale-95 text-white font-semibold py-3 px-4 rounded-md transition-all"
         >
           Pay Annual Membership — $120 NZD
         </button>

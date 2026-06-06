@@ -13,7 +13,7 @@ const currentPath = Astro.url.pathname;
 
 <header class="bg-green-900 text-white shadow-md relative z-50">
   <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-1 text-xl font-bold tracking-tight hover:text-green-200 transition-colors">
+    <a href="/" class="flex items-center gap-1 text-xl font-bold tracking-tight hover:text-green-200 active:opacity-50 transition-all">
       <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Flagstick -->
         <line x1="7" y1="2" x2="7" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
@@ -30,7 +30,7 @@ const currentPath = Astro.url.pathname;
       {links.map(({ href, label }) => (
         <a
           href={href}
-          class={`hover:text-green-200 transition-colors ${currentPath === href ? 'text-green-300 font-semibold' : ''}`}
+          class={`hover:text-green-200 active:opacity-50 transition-all ${currentPath === href ? 'text-green-300 font-semibold' : ''}`}
         >
           {label}
         </a>
@@ -40,7 +40,7 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile hamburger -->
     <button
       id="menu-btn"
-      class="md:hidden flex flex-col gap-1.5 p-2"
+      class="md:hidden flex flex-col gap-1.5 p-2 active:opacity-50 transition-opacity"
       aria-label="Toggle menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -66,7 +66,7 @@ const currentPath = Astro.url.pathname;
   {links.map(({ href, label }) => (
     <a
       href={href}
-      class={`py-4 text-2xl font-semibold hover:text-green-200 transition-colors ${currentPath === href ? 'text-green-300' : ''}`}
+      class={`py-4 px-8 text-2xl font-semibold hover:text-green-200 active:bg-white/10 active:rounded-lg transition-all ${currentPath === href ? 'text-green-300' : ''}`}
     >
       {label}
     </a>
@@ -82,10 +82,9 @@ const currentPath = Astro.url.pathname;
     menu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
     menu.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
     btn.setAttribute('aria-expanded', 'true');
-    // Animate bars into X
-    bars[0].style.transform = 'rotate(45deg) translateY(8px)';
-    bars[1].style.opacity = '0';
-    bars[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+    // Fade out top and bottom bars, keep middle
+    bars[0].style.opacity = '0';
+    bars[2].style.opacity = '0';
     // Focus first link
     const firstLink = menu.querySelector('a') as HTMLElement | null;
     firstLink?.focus();
@@ -95,10 +94,9 @@ const currentPath = Astro.url.pathname;
     menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
     menu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
     btn.setAttribute('aria-expanded', 'false');
-    // Animate X back to bars
-    bars[0].style.transform = '';
-    bars[1].style.opacity = '';
-    bars[2].style.transform = '';
+    // Restore all bars
+    bars[0].style.opacity = '';
+    bars[2].style.opacity = '';
     btn.focus();
   }
 
