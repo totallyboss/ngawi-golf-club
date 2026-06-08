@@ -60,6 +60,7 @@ Before anything else, create accounts on these three services:
   - `STRIPE_SECRET_KEY` = your Stripe **test** secret key (for now)
   - `RESEND_API_KEY` = your Resend API key
   - `CONTACT_EMAIL` = the club's email address
+  - `COMING_SOON` = `true` to show the coming soon page to all visitors (omit or set to anything else to show the full site)
 - [ ] Trigger a deployment and verify the site loads on the auto-generated `*.pages.dev` URL
 - [ ] Test payments and forms on the live Pages URL
 

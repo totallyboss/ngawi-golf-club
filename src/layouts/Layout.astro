@@ -31,6 +31,13 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
         <p class="font-semibold text-lg mb-1">Ngawi Golf Club</p>
         <p class="text-green-300">Ngawi, Wairarapa, New Zealand</p>
         <p class="mt-4 text-green-400">© {new Date().getFullYear()} Ngawi Golf Club. All rights reserved.</p>
+        {import.meta.env.COMING_SOON === 'true' && (
+          <div class="mt-6 pt-6 border-t border-green-700">
+            <button id="coming-soon-toggle" class="text-xs text-green-400 hover:text-white underline underline-offset-2 transition-colors cursor-pointer">
+              View coming soon page
+            </button>
+          </div>
+        )}
       </div>
     </footer>
   </body>
@@ -60,6 +67,12 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
       menuBtn.click();
     }
   }
+
+  // Coming soon preview toggle
+  document.getElementById('coming-soon-toggle')?.addEventListener('click', () => {
+    document.cookie = 'preview_site=; path=/; max-age=0';
+    window.location.href = '/coming-soon';
+  });
 
   document.addEventListener('click', (e) => {
     const link = (e.target as Element).closest('a[href]') as HTMLAnchorElement | null;

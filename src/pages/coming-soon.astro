@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coming Soon — Ngawi Golf Club</title>
+    <meta name="description" content="Ngawi Golf Club — coming soon." />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body class="bg-green-900 text-white min-h-screen flex flex-col items-center justify-center px-4 text-center">
+    <a href="/" class="flex items-center justify-center gap-2 mb-8">
+      <svg aria-hidden="true" width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="7" y1="2" x2="7" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <polygon points="7,2 15,5.5 7,9" fill="white"/>
+        <circle cx="7" cy="18" r="2" fill="white"/>
+      </svg>
+    </a>
+    <h1 class="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-4">Ngawi Golf Club</h1>
+    <p class="text-green-200 text-lg max-w-sm">Something special is on its way. Check back soon.</p>
+    {import.meta.env.COMING_SOON === 'true' && (
+      <button id="preview-toggle" class="mt-12 text-xs text-green-500 hover:text-green-300 underline underline-offset-2 transition-colors cursor-pointer">
+        Preview site
+      </button>
+    )}
+    <script>
+      document.getElementById('preview-toggle')?.addEventListener('click', () => {
+        document.cookie = 'preview_site=true; path=/; max-age=86400';
+        window.location.href = '/';
+      });
+    </script>
+  </body>
+</html>
