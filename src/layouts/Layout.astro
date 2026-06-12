@@ -19,25 +19,36 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} | Ngawi Golf Club</title>
   </head>
-  <body class="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
+  <body class="min-h-screen flex flex-col bg-background text-foreground font-sans">
     <!-- Page progress bar -->
-    <div id="page-progress" style="position:fixed;top:0;left:0;height:3px;width:0;z-index:9999;background:rgb(21 128 61);pointer-events:none;transition:opacity 0.3s ease;"></div>
+    <div id="page-progress" style="position:fixed;top:0;left:0;height:2px;width:0;z-index:9999;background:oklch(0.527 0.136 150);pointer-events:none;transition:opacity 0.3s ease;"></div>
     <Nav />
     <main class="flex-1">
       <slot />
     </main>
-    <footer class="bg-green-900 text-white py-8">
-      <div class="max-w-5xl mx-auto px-4 text-center text-sm">
-        <p class="font-semibold text-lg mb-1">Ngawi Golf Club</p>
-        <p class="text-green-300">Ngawi, Wairarapa, New Zealand</p>
-        <p class="mt-4 text-green-400">© {new Date().getFullYear()} Ngawi Golf Club. All rights reserved.</p>
-        {import.meta.env.COMING_SOON === 'true' && (
-          <div class="mt-6 pt-6 border-t border-green-700">
-            <button id="coming-soon-toggle" class="text-xs text-green-400 hover:text-white underline underline-offset-2 transition-colors cursor-pointer">
+    <footer class="bg-[oklch(0.296_0.083_156)] text-white">
+      <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div>
+            <p class="font-heading text-xl font-semibold mb-1">Ngawi Golf Club</p>
+            <p class="text-white/60 text-sm">Ngawi, Wairarapa, New Zealand</p>
+          </div>
+          <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
+            <a href="/course" class="hover:text-white transition-colors">Course</a>
+            <a href="/fees" class="hover:text-white transition-colors">Fees</a>
+            <a href="/events" class="hover:text-white transition-colors">Events</a>
+            <a href="/sponsorship" class="hover:text-white transition-colors">Sponsorship</a>
+            <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+          </nav>
+        </div>
+        <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-white/40">
+          <p>© {new Date().getFullYear()} Ngawi Golf Club. All rights reserved.</p>
+          {import.meta.env.COMING_SOON === 'true' && (
+            <button id="coming-soon-toggle" class="text-white/40 hover:text-white/70 underline underline-offset-2 transition-colors cursor-pointer text-left">
               View coming soon page
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </footer>
   </body>
@@ -60,7 +71,6 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
   const bar = document.getElementById('page-progress')!;
   const main = document.querySelector('main')!;
 
-  // Close mobile menu if open — dispatches a custom event Nav.astro listens for
   function closeMobileMenuIfOpen() {
     const menuBtn = document.getElementById('menu-btn');
     if (menuBtn?.getAttribute('aria-expanded') === 'true') {
@@ -68,7 +78,6 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
     }
   }
 
-  // Coming soon preview toggle
   document.getElementById('coming-soon-toggle')?.addEventListener('click', () => {
     document.cookie = 'preview_site=; path=/; max-age=0';
     window.location.href = '/coming-soon';
@@ -80,7 +89,6 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
 
     const href = link.getAttribute('href') ?? '';
 
-    // Skip: external links, hash anchors, mailto/tel
     if (
       !href ||
       href.startsWith('http') ||
@@ -90,7 +98,6 @@ const { title, description = 'Ngawi Golf Club — a scenic links course on the W
       href.startsWith('tel:')
     ) return;
 
-    // Immediate feedback
     closeMobileMenuIfOpen();
     bar.classList.add('loading');
     main.style.transition = 'opacity 0.15s ease';

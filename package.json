@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "^13.6.1",
     "@base-ui/react": "^1.5.0",
+    "@fontsource-variable/fraunces": "^5.2.9",
     "@fontsource-variable/geist": "^5.2.9",
     "@fontsource-variable/playfair-display": "^5.2.8",
     "@tailwindcss/vite": "^4.3.0",

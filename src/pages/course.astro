@@ -3,53 +3,62 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="The Course" description="Course information for Ngawi Golf Club — a links course on the Wairarapa Coast.">
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">The Course</h1>
-    <p class="text-gray-600 text-lg mb-10">
-      Ngawi Golf Club offers a unique links experience on the remote southern tip of the Wairarapa Coast.
-      With wild winds off Cook Strait and panoramic sea views, every round is memorable.
-    </p>
 
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      <div class="bg-green-50 rounded-lg p-6">
-        <h2 class="font-heading text-xl font-semibold text-green-900 mb-4">Course Details</h2>
-        <dl class="space-y-3 text-sm">
-          <div class="flex justify-between border-b border-green-100 pb-2">
-            <dt class="text-gray-600">Holes</dt>
-            <dd class="font-medium">9</dd>
-          </div>
-          <div class="flex justify-between border-b border-green-100 pb-2">
-            <dt class="text-gray-600">Par</dt>
-            <dd class="font-medium">36</dd>
-          </div>
-          <div class="flex justify-between border-b border-green-100 pb-2">
-            <dt class="text-gray-600">Type</dt>
-            <dd class="font-medium">Links</dd>
-          </div>
-          <div class="flex justify-between border-b border-green-100 pb-2">
-            <dt class="text-gray-600">Location</dt>
-            <dd class="font-medium">Ngawi, Wairarapa</dd>
-          </div>
-          <div class="flex justify-between">
-            <dt class="text-gray-600">Green Fees</dt>
-            <dd class="font-medium">$10 NZD</dd>
-          </div>
+  <!-- Mini-hero -->
+  <section class="relative h-[50vh] min-h-[320px] flex items-end">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=2070&auto=format&fit=crop')"
+    ></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, oklch(0.21 0.055 160 / 0.85) 0%, oklch(0.21 0.055 160 / 0.35) 55%, transparent 100%)"></div>
+    <div class="relative max-w-6xl mx-auto px-6 pb-12 w-full">
+      <h1 class="font-heading text-5xl md:text-6xl font-bold text-white mb-3 leading-tight">The Course</h1>
+      <p class="text-white/75 text-lg max-w-xl leading-relaxed">
+        Links golf on the Palliser Bay coast — wild, windswept, and unlike anywhere else in New Zealand.
+      </p>
+    </div>
+  </section>
+
+  <!-- Details + Rules -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="bg-card rounded-2xl border border-border p-8">
+        <h2 class="font-heading text-2xl font-semibold text-[oklch(0.296_0.083_156)] mb-6">Course Details</h2>
+        <dl class="space-y-0 divide-y divide-border text-sm">
+          {[
+            ['Holes', '9'],
+            ['Par', '36'],
+            ['Type', 'Links'],
+            ['Location', 'Ngawi, Wairarapa'],
+            ['Green Fee', '$10 NZD'],
+          ].map(([label, value]) => (
+            <div class="flex justify-between items-center py-3.5">
+              <dt class="text-muted-foreground">{label}</dt>
+              <dd class="font-medium text-foreground">{value}</dd>
+            </div>
+          ))}
         </dl>
       </div>
 
-      <div class="bg-green-50 rounded-lg p-6">
-        <h2 class="font-heading text-xl font-semibold text-green-900 mb-4">Course Rules</h2>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Have fun</li>
-          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> Be respectful</li>
-          <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">✓</span> If the ball goes over the road....</li>
+      <div class="bg-card rounded-2xl border border-border p-8">
+        <h2 class="font-heading text-2xl font-semibold text-[oklch(0.296_0.083_156)] mb-6">Course Rules</h2>
+        <ul class="space-y-4 text-sm text-foreground">
+          {['Have fun', 'Be respectful', 'If the ball goes over the road….'].map(rule => (
+            <li class="flex items-start gap-3">
+              <svg class="w-4 h-4 text-[oklch(0.527_0.136_150)] shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {rule}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
 
-    <div class="bg-gray-50 rounded-lg p-6">
-      <h2 class="font-heading text-xl font-semibold text-green-900 mb-3">Getting Here</h2>
-      <p class="text-gray-600 text-sm mb-4">
+    <div class="mt-6 bg-card rounded-2xl border border-border p-8">
+      <h2 class="font-heading text-2xl font-semibold text-[oklch(0.296_0.083_156)] mb-3">Getting Here</h2>
+      <p class="text-muted-foreground text-sm leading-relaxed mb-5 max-w-2xl">
         Ngawi is located at the southern tip of the Wairarapa, approximately 2.5 hours from Wellington via Martinborough and Palliser Bay.
         Follow State Highway 53 through Lake Ferry — Ngawi is at the end of the road, right on the coast.
       </p>
@@ -57,47 +66,67 @@ import Layout from '../layouts/Layout.astro';
         href="https://www.google.com/maps/search/Ngawi+Golf+Club+Wairarapa"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-1.5 text-green-700 font-medium text-sm hover:underline active:opacity-50 transition-opacity"
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-[oklch(0.448_0.119_154)] hover:text-[oklch(0.296_0.083_156)] transition-colors"
       >
         View on Google Maps →
       </a>
     </div>
-  </div>
+  </section>
 
-  <!-- Gallery — full browser width, above History section -->
-  <div class="py-10">
+  <!-- Gallery -->
+  <div class="pb-16">
     <div
-      class="flex gap-3 overflow-x-auto scroll-smooth px-4 pb-3"
-      style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;"
+      class="flex gap-3 overflow-x-auto px-6 pb-3"
+      style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;"
     >
-      <img src="https://picsum.photos/seed/course1/576/384" alt="Golf course" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course2/576/384" alt="Golf fairway" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course3/576/384" alt="Golf green" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course4/576/384" alt="Coastal views" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course5/576/384" alt="Golf hole" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course6/576/384" alt="Morning light" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course7/576/384" alt="Links landscape" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course8/576/384" alt="Palliser Bay" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course9/576/384" alt="Club grounds" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
-      <img src="https://picsum.photos/seed/course10/576/384" alt="Wairarapa coast" class="h-50 md:h-96 w-[80vw] md:w-[576px] flex-shrink-0 object-cover rounded-lg" style="scroll-snap-align: start;" />
+      {[
+        { id: 'photo-1553284965-83fd3e82fa5a', alt: 'Links golf landscape' },
+        { id: 'photo-1596727147705-61a532a659bd', alt: 'Coastal golf views' },
+        { id: 'photo-1591491683301-8ef31e8976f2', alt: 'Golfer on the course' },
+        { id: 'photo-1587174486073-ae5e5cff23aa', alt: 'Golf course fairway' },
+        { id: 'photo-1535131749006-b7f58c99034b', alt: 'Golfer teeing off' },
+      ].map(({ id, alt }) => (
+        <img
+          src={`https://images.unsplash.com/${id}?q=80&w=700&auto=format&fit=crop`}
+          alt={alt}
+          class="h-56 md:h-80 w-[75vw] md:w-[520px] flex-shrink-0 object-cover rounded-2xl"
+          style="scroll-snap-align: start;"
+        />
+      ))}
     </div>
   </div>
 
   <!-- History & Community -->
-  <div class="max-w-4xl mx-auto px-4 pb-12">
-    <h2 class="font-heading text-2xl md:text-3xl font-bold text-green-900 mb-4">History & Community</h2>
-    <!-- TODO: replace with real copy -->
-    <div class="text-gray-600 space-y-4">
-      <p>
-        Ngawi Golf Club has been part of this rugged coastal community for generations. Founded by locals who wanted a place to play, unwind, and connect, the club has always been about more than golf — it's a gathering point for the people of Ngawi and the wider Palliser Bay region.
-      </p>
-      <p>
-        Ngawi itself is one of New Zealand's most distinctive fishing villages, known for its fleet of bulldozers used to launch boats straight off the beach into the surf. Sitting at the foot of Cape Palliser, the southernmost point of the North Island, the area is wild, windswept, and unlike anywhere else in the country. The golf course reflects that character — unpretentious, memorable, and deeply tied to the land.
-      </p>
-      <p>
-        The club welcomes visitors from across New Zealand and beyond. Whether you're a local who's played every hole a hundred times, or a traveller making the journey down SH53 for the first time, you'll find a warm welcome and a round worth remembering.
-      </p>
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-[oklch(0.296_0.083_156)] mb-8">History &amp; Community</h2>
+    <div class="grid md:grid-cols-2 gap-10 text-muted-foreground leading-relaxed">
+      <div class="space-y-5">
+        <p>
+          Ngawi Golf Club has been part of this rugged coastal community for generations. Founded by locals who wanted a place to play, unwind, and connect, the club has always been about more than golf — it's a gathering point for the people of Ngawi and the wider Palliser Bay region.
+        </p>
+        <p>
+          Ngawi itself is one of New Zealand's most distinctive fishing villages, known for its fleet of bulldozers used to launch boats straight off the beach into the surf. Sitting at the foot of Cape Palliser, the southernmost point of the North Island, the area is wild, windswept, and unlike anywhere else in the country.
+        </p>
+      </div>
+      <div class="space-y-5">
+        <p>
+          The golf course reflects that character — unpretentious, memorable, and deeply tied to the land. Whether you're a local who's played every hole a hundred times, or a traveller making the journey down SH53 for the first time, you'll find a warm welcome and a round worth remembering.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="bg-[oklch(0.964_0.015_145)] border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-[oklch(0.296_0.083_156)] mb-1">Ready to play?</h2>
+        <p class="text-muted-foreground text-sm">Green fees from $10 NZD. No booking required.</p>
+      </div>
+      <a href="/fees" class="inline-flex items-center justify-center bg-[oklch(0.296_0.083_156)] hover:bg-[oklch(0.25_0.07_156)] active:scale-95 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm whitespace-nowrap">
+        View Fees &amp; Pay →
+      </a>
+    </div>
+  </section>
 
 </Layout>
