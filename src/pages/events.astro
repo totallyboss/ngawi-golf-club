@@ -7,104 +7,138 @@ const events = [
     date: '2026-07-05',
     displayDate: 'Saturday 5 July 2026',
     description: 'Kick off the season with our popular stableford competition. All members and visitors welcome.',
+    type: 'Competition',
   },
   {
     title: 'Club Championship — Round 1',
     date: '2026-08-02',
     displayDate: 'Sunday 2 August 2026',
     description: 'First round of the annual Ngawi Golf Club Championship. Members only.',
+    type: 'Competition',
   },
   {
     title: 'Club Championship — Round 2',
     date: '2026-08-09',
     displayDate: 'Sunday 9 August 2026',
     description: 'Final round and presentation. Light refreshments provided at the clubhouse.',
+    type: 'Competition',
   },
   {
     title: 'Visitors Day',
     date: '2026-09-13',
     displayDate: 'Sunday 13 September 2026',
-    description: 'Open day for visitors and potential new members. Green fees waived. Come and see what we\'re about.',
+    description: "Open day for visitors and potential new members. Green fees waived. Come and see what we're about.",
+    type: "Visitors Day",
   },
   {
     title: 'End of Season Social Round',
     date: '2026-10-25',
     displayDate: 'Sunday 25 October 2026',
     description: 'Casual social round to close out the season. BBQ and prizegiving to follow.',
+    type: 'Social Round',
   },
 ];
+
+const typeColors: Record<string, string> = {
+  'Competition':   'bg-[oklch(0.964_0.015_145)] text-[oklch(0.296_0.083_156)]',
+  'Social Round':  'bg-[oklch(0.964_0.015_145)] text-[oklch(0.448_0.119_154)]',
+  "Visitors Day":  'bg-[oklch(0.964_0.015_145)] text-[oklch(0.363_0.100_157)]',
+};
 ---
 
 <Layout title="Events" description="Upcoming events at Ngawi Golf Club.">
-  <div class="max-w-4xl mx-auto px-4 pt-12 pb-16">
-    <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">Upcoming Events</h1>
-    <p class="text-gray-600 text-lg mb-10">
-      Club competitions, open days, and social rounds. Check back regularly for updates.
-    </p>
+
+  <!-- Page header -->
+  <section class="border-b border-border">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-20">
+      <h1 class="font-heading text-5xl md:text-6xl font-bold text-[oklch(0.296_0.083_156)] mb-4 leading-tight">Upcoming Events</h1>
+      <p class="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+        Club competitions, open days, and social rounds. Check back regularly for updates.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-16">
 
     {events.length > 0 ? (
-      <div class="space-y-6 mb-10">
+      <div class="space-y-4 mb-12">
         {events.map(event => (
-          <div class="border border-gray-200 rounded-lg p-5 shadow-sm flex flex-col sm:flex-row gap-4">
-            <div class="sm:w-36 shrink-0">
-              <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
-                {event.displayDate}
+          <div class="bg-card rounded-2xl border border-border p-6 flex flex-col sm:flex-row sm:items-start gap-5 hover:border-[oklch(0.527_0.136_150)] transition-colors">
+            <div class="sm:w-48 shrink-0 flex flex-col gap-2">
+              <span class={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${typeColors[event.type] ?? 'bg-muted text-muted-foreground'}`}>
+                {event.type}
               </span>
+              <span class="text-sm text-muted-foreground">{event.displayDate}</span>
             </div>
             <div>
-              <h2 class="text-base font-semibold text-gray-900 mb-1">{event.title}</h2>
-              <p class="text-sm text-gray-600">{event.description}</p>
+              <h2 class="font-heading text-lg font-semibold text-foreground mb-1">{event.title}</h2>
+              <p class="text-sm text-muted-foreground leading-relaxed">{event.description}</p>
             </div>
           </div>
         ))}
       </div>
     ) : (
-      <div class="bg-green-50 rounded-lg p-8 text-center mb-10">
-        <p class="text-gray-600 text-lg">
+      <div class="bg-muted rounded-2xl p-10 text-center mb-12">
+        <p class="text-muted-foreground text-lg">
           Nothing on the calendar right now. Check back soon, or{' '}
-          <a href="/contact" class="text-green-700 font-medium hover:underline active:opacity-50 transition-opacity">get in touch</a>
+          <a href="/contact" class="text-[oklch(0.448_0.119_154)] font-medium hover:text-[oklch(0.296_0.083_156)] transition-colors underline underline-offset-2">
+            get in touch
+          </a>
           {' '}to be the first to know about upcoming events.
         </p>
       </div>
     )}
 
-    <p class="text-sm text-gray-500 mb-16">
-      Want to be notified about events? <a href="/contact" class="text-green-700 hover:underline">Contact us</a> to get on the mailing list.
+    <p class="text-sm text-muted-foreground mb-20">
+      Want to be notified about events?{' '}
+      <a href="/contact" class="text-[oklch(0.448_0.119_154)] hover:text-[oklch(0.296_0.083_156)] transition-colors underline underline-offset-2">
+        Contact us
+      </a>
+      {' '}to get on the mailing list.
     </p>
 
-    <!-- Evergreen event types -->
-    <h2 class="font-heading text-2xl md:text-3xl font-bold text-green-900 mb-6">What We Run</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="text-center p-6 rounded-lg border border-gray-200 shadow-sm">
-        <div class="text-4xl mb-3">🏆</div>
-        <h3 class="text-lg font-semibold mb-2">Competitions</h3>
-        <p class="text-gray-600 text-sm">
-          Structured scoring events throughout the season — stableford, stroke play, and the annual Club Championship. Some open to all, some members only.
-        </p>
-      </div>
-      <div class="text-center p-6 rounded-lg border border-gray-200 shadow-sm">
-        <div class="text-4xl mb-3">⛳</div>
-        <h3 class="text-lg font-semibold mb-2">Social Rounds</h3>
-        <p class="text-gray-600 text-sm">
-          Casual golf with no scoring pressure. A chance to enjoy the course, meet fellow members, and share a post-round drink. All welcome.
-        </p>
-      </div>
-      <div class="text-center p-6 rounded-lg border border-gray-200 shadow-sm">
-        <div class="text-4xl mb-3">👋</div>
-        <h3 class="text-lg font-semibold mb-2">Visitors Days</h3>
-        <p class="text-gray-600 text-sm">
-          Open days for non-members curious about the club. Green fees waived. Come and see what Ngawi Golf Club is all about — no obligation.
-        </p>
-      </div>
+    <!-- What We Run -->
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-[oklch(0.296_0.083_156)] mb-10">What We Run</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {[
+        {
+          title: 'Competitions',
+          body: 'Structured scoring events throughout the season — stableford, stroke play, and the annual Club Championship. Some open to all, some members only.',
+          icon: `<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>`,
+        },
+        {
+          title: 'Social Rounds',
+          body: 'Casual golf with no scoring pressure. A chance to enjoy the course, meet fellow members, and share a post-round drink. All welcome.',
+          icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+        },
+        {
+          title: "Visitors Days",
+          body: "Open days for non-members curious about the club. Green fees waived. Come and see what Ngawi Golf Club is all about — no obligation.",
+          icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>`,
+        },
+      ].map(({ title, body, icon }) => (
+        <div class="flex flex-col p-8 rounded-2xl bg-card border border-border">
+          <div class="mb-5 w-10 h-10 rounded-xl bg-[oklch(0.964_0.015_145)] flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="oklch(0.448 0.119 154)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-foreground mb-2">{title}</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">{body}</p>
+        </div>
+      ))}
     </div>
-  </div>
+  </section>
 
-  <!-- Visual strip -->
-  <img
-    src="https://picsum.photos/1000/400"
-    alt=""
-    aria-hidden="true"
-    class="block w-full h-100 object-cover"
-  />
+  <!-- CTA band -->
+  <section class="bg-[oklch(0.964_0.015_145)] border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-[oklch(0.296_0.083_156)] mb-1">Ready to play?</h2>
+        <p class="text-muted-foreground text-sm">Green fees from $10 NZD. No booking required. Pay online and head straight to the course.</p>
+      </div>
+      <a href="/fees" class="inline-flex items-center justify-center bg-[oklch(0.296_0.083_156)] hover:bg-[oklch(0.25_0.07_156)] active:scale-95 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm whitespace-nowrap">
+        Pay &amp; Play →
+      </a>
+    </div>
+  </section>
 
 </Layout>

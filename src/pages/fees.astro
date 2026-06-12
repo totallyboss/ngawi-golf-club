@@ -3,81 +3,110 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Fees" description="Green fees and membership pricing for Ngawi Golf Club.">
-  <div class="max-w-4xl mx-auto px-4 py-12">
-    <h1 class="font-heading text-3xl md:text-4xl font-bold text-green-900 mb-4">Fees</h1>
-    <p class="text-gray-600 text-lg mb-10">
-      Golf at Ngawi is deliberately affordable. A $10 round is one of the best-value games in New Zealand — and for $120 a year you get unlimited golf <em>and</em> a NZ Golf accredited membership recognised at clubs across the country.
-    </p>
 
-    <div class="grid md:grid-cols-2 gap-8">
+  <!-- Page header -->
+  <section class="border-b border-border">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-20">
+      <h1 class="font-heading text-5xl md:text-6xl font-bold text-[oklch(0.296_0.083_156)] mb-4 leading-tight">Fees</h1>
+      <p class="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+        Golf at Ngawi is deliberately affordable. A $10 round is one of the best-value games in New Zealand —
+        and for $120 a year you get unlimited golf <em>and</em> a NZ Golf accredited membership.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+
       <!-- Green fee card -->
-      <div class="border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
-        <h2 class="text-xl font-semibold text-green-900 mb-1">Green Fee</h2>
-        <p class="text-3xl font-bold text-green-700 mb-1">$10 <span class="text-base font-normal text-gray-500">NZD</span></p>
-        <p class="text-sm text-gray-500 mb-4">Per round. One of the cheapest games in New Zealand.</p>
-        <ul class="text-sm text-gray-600 space-y-1 mb-6 flex-1">
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> One round, pay-and-play</li>
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> No booking required</li>
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Receipt emailed by Stripe</li>
+      <div class="bg-card rounded-2xl border border-border p-8 flex flex-col">
+        <h2 class="font-heading text-2xl font-semibold text-[oklch(0.296_0.083_156)] mb-1">Green Fee</h2>
+        <p class="text-4xl font-bold text-[oklch(0.296_0.083_156)] mt-2 mb-1">
+          $10 <span class="text-base font-normal text-muted-foreground">NZD</span>
+        </p>
+        <p class="text-sm text-muted-foreground mb-6">Per round. One of the cheapest games in New Zealand.</p>
+        <ul class="space-y-3 text-sm mb-8 flex-1">
+          {['One round, pay-and-play', 'No booking required', 'Receipt emailed by Stripe'].map(item => (
+            <li class="flex items-start gap-3 text-foreground">
+              <svg class="w-4 h-4 text-[oklch(0.527_0.136_150)] shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {item}
+            </li>
+          ))}
         </ul>
 
-        <!-- Member toggle -->
-        <div class="mb-4" id="member-section">
-          <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none">
-            <input type="checkbox" id="is-member" class="w-4 h-4 accent-green-700" />
-            I am an annual member — no green fee applies
+        <div class="mb-5">
+          <label class="flex items-center gap-3 text-sm text-muted-foreground cursor-pointer select-none group">
+            <input type="checkbox" id="is-member" class="w-4 h-4 rounded accent-[oklch(0.448_0.119_154)]" />
+            <span class="group-hover:text-foreground transition-colors">I am an annual member — no green fee applies</span>
           </label>
         </div>
 
         <div id="green-fee-btn">
           <button
             id="pay-green-fee"
-            class="w-full bg-green-700 hover:bg-green-800 active:bg-green-900 active:scale-95 text-white font-semibold py-3 px-4 rounded-md transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+            class="w-full bg-[oklch(0.296_0.083_156)] hover:bg-[oklch(0.25_0.07_156)] active:scale-95 text-white font-semibold py-3.5 px-4 rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed text-sm"
           >
             Pay Green Fee — $10 NZD
           </button>
         </div>
-        <p id="member-msg" class="hidden text-sm text-green-700 font-medium text-center py-3">
+        <p id="member-msg" class="hidden text-sm text-[oklch(0.448_0.119_154)] font-medium text-center py-3.5">
           ✓ Members play free — enjoy your round!
         </p>
       </div>
 
       <!-- Membership card -->
-      <div class="border-2 border-green-700 rounded-lg p-6 shadow-sm flex flex-col relative">
-        <span class="absolute -top-3 left-4 bg-green-700 text-white text-xs font-semibold px-2 py-0.5 rounded">Best value</span>
-        <h2 class="text-xl font-semibold text-green-900 mb-1">Annual Membership</h2>
-        <p class="text-3xl font-bold text-green-700 mb-1">$120 <span class="text-base font-normal text-gray-500">NZD / year</span></p>
-        <p class="text-sm text-gray-500 mb-4">One-off payment. No automatic renewal.</p>
-        <ul class="text-sm text-gray-600 space-y-1 mb-6 flex-1">
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Unlimited rounds for 12 months</li>
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> No green fees when you play</li>
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Access to club competitions</li>
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> NZ Golf accredited — recognised at clubs across New Zealand</li>
-          <li class="flex items-start gap-2"><span class="text-green-600">✓</span> Receipt emailed by Stripe</li>
+      <div class="bg-card rounded-2xl border-2 border-[oklch(0.448_0.119_154)] p-8 flex flex-col relative">
+        <span class="absolute -top-3.5 left-6 bg-[oklch(0.448_0.119_154)] text-white text-xs font-semibold px-3 py-1 rounded-full">Best value</span>
+        <h2 class="font-heading text-2xl font-semibold text-[oklch(0.296_0.083_156)] mb-1">Annual Membership</h2>
+        <p class="text-4xl font-bold text-[oklch(0.296_0.083_156)] mt-2 mb-1">
+          $120 <span class="text-base font-normal text-muted-foreground">NZD / year</span>
+        </p>
+        <p class="text-sm text-muted-foreground mb-6">One-off payment. No automatic renewal.</p>
+        <ul class="space-y-3 text-sm mb-8 flex-1">
+          {[
+            'Unlimited rounds for 12 months',
+            'No green fees when you play',
+            'Access to club competitions',
+            'NZ Golf accredited — recognised at clubs across New Zealand',
+            'Receipt emailed by Stripe',
+          ].map(item => (
+            <li class="flex items-start gap-3 text-foreground">
+              <svg class="w-4 h-4 text-[oklch(0.527_0.136_150)] shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {item}
+            </li>
+          ))}
         </ul>
-
         <button
           id="pay-membership"
-          class="w-full bg-green-700 hover:bg-green-800 active:bg-green-900 active:scale-95 text-white font-semibold py-3 px-4 rounded-md transition-all"
+          class="w-full bg-[oklch(0.296_0.083_156)] hover:bg-[oklch(0.25_0.07_156)] active:scale-95 text-white font-semibold py-3.5 px-4 rounded-xl transition-all text-sm"
         >
           Pay Annual Membership — $120 NZD
         </button>
       </div>
     </div>
 
-    <p class="text-xs text-gray-400 mt-6 text-center">
+    <p class="text-xs text-muted-foreground/60 text-center">
       Payments processed securely by Stripe. Ngawi Golf Club does not store card details.
       Stripe charges a small transaction fee (~2.9% + 30¢) which is absorbed in the listed price.
     </p>
-  </div>
-  
-  <!-- Visual strip -->
-  <img
-    src="https://picsum.photos/1000/400"
-    alt=""
-    aria-hidden="true"
-    class="block w-full h-100 object-cover"
-  />
+  </section>
+
+  <!-- CTA band -->
+  <section class="bg-[oklch(0.964_0.015_145)] border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-[oklch(0.296_0.083_156)] mb-1">Come and see for yourself</h2>
+        <p class="text-muted-foreground text-sm">A links course unlike any other in New Zealand. Visitors always welcome.</p>
+      </div>
+      <a href="/course" class="inline-flex items-center justify-center bg-[oklch(0.296_0.083_156)] hover:bg-[oklch(0.25_0.07_156)] active:scale-95 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-sm whitespace-nowrap">
+        About the Course →
+      </a>
+    </div>
+  </section>
 
 </Layout>
 
