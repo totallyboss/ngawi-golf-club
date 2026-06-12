@@ -21,7 +21,7 @@ import Layout from '../layouts/Layout.astro';
         Ngawi Golf Club
       </h1>
       <p class="text-white/80 text-lg md:text-xl mb-10 max-w-lg leading-relaxed">
-        A remote links course on the Palliser Bay coast — unlike any other in New Zealand. Green fees from $10. Membership $120/year.
+        A remote links course on the Palliser Bay coast — unlike any other in New Zealand. Green fees from $10. NZ Accredited Membership for $120/year.
       </p>
       <div class="flex flex-col sm:flex-row gap-3">
         <a href="/fees" class="inline-flex items-center justify-center bg-white text-[oklch(0.296_0.083_156)] font-semibold px-7 py-3.5 rounded-xl hover:bg-white/90 active:scale-95 transition-all text-sm tracking-wide shadow-lg">
@@ -93,7 +93,7 @@ import Layout from '../layouts/Layout.astro';
   <!-- Gallery strip -->
   <section class="pb-24">
     <div
-      class="flex gap-3 overflow-x-auto px-6 pb-3"
+      class="flex overflow-x-auto"
       style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;"
     >
       {[
@@ -106,7 +106,7 @@ import Layout from '../layouts/Layout.astro';
         <img
           src={`https://images.unsplash.com/${id}?q=80&w=700&auto=format&fit=crop`}
           alt={alt}
-          class="h-56 md:h-80 w-[75vw] md:w-[520px] flex-shrink-0 object-cover rounded-2xl"
+          class="h-56 md:h-80 w-[75vw] md:w-[520px] flex-shrink-0 object-cover"
           style="scroll-snap-align: start;"
         />
       ))}
